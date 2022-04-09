@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+package ui
+
+const template = `<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -99,14 +101,13 @@
             headerObject: {
                 selectIndex: 1,
             },
-            host: "http://127.0.0.1:5000"
         },
         created() {
             this.pageInit()
         },
         methods: {
             pageInit() {
-                axios.get(this.host + "/cronjob").then((success) => {
+                axios.get("/cronjob").then((success) => {
                     if (success.status === 200) {
                         this.jobObject.jobs = success.data
                     }
@@ -124,7 +125,7 @@
              * @param job 任务
              */
             handleJobStart(job) {
-                axios.post(this.host + "/cronjob/" + job.id).then((success) => {
+                axios.post("/cronjob/" + job.id).then((success) => {
                     if (success.status === 200) {
                         this.$notify({
                             title: '成功',
@@ -157,3 +158,4 @@
     })
 </script>
 </html>
+`

@@ -22,11 +22,13 @@ type CronUI struct {
 	entriesInfo   map[cron.EntryID]JobInfo
 	manualHistory map[cron.EntryID][]string
 	engine        *gin.Engine
+	host          string
 }
 
-func NewCronUI(c *cron.Cron, info map[cron.EntryID]JobInfo) *CronUI {
+func NewCronUI(c *cron.Cron, info map[cron.EntryID]JobInfo, host string) *CronUI {
 	return &CronUI{
 		cron:          c,
+		host:          host,
 		engine:        gin.Default(),
 		entriesInfo:   info,
 		manualHistory: make(map[cron.EntryID][]string),
@@ -35,7 +37,7 @@ func NewCronUI(c *cron.Cron, info map[cron.EntryID]JobInfo) *CronUI {
 
 func (c *CronUI) Start() {
 	c.setUp()
-	err := c.engine.Run("127.0.0.1:5000")
+	err := c.engine.Run(c.host)
 	log.Fatalln(err)
 }
 
@@ -45,7 +47,7 @@ func (c *CronUI) Stop() {
 func (c *CronUI) setUp() {
 	c.engine.Use(CORS())
 	c.engine.GET("/", func(ctx *gin.Context) {
-		ctx.File("./templates/index.html")
+		ctx.Data(http.StatusOK, "text/html;charset=UTF-8", []byte(template))
 	})
 	c.engine.GET("/cronjob", c.getCronJob)
 	c.engine.POST("/cronjob/:entry_id", c.startCronJob)

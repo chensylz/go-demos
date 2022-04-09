@@ -25,7 +25,7 @@ type Job struct {
 // 需要执行的定时任务.
 var jobs = []Job{
 	// 每分钟.
-	{Spec: "@every 1s", Func: tasks.HelloWorld, Name: "HelloWorld"},
+	{Spec: "@every 1m", Func: tasks.HelloWorld, Name: "HelloWorld"},
 }
 
 var entriesName = map[cron.EntryID]ui.JobInfo{}
@@ -52,7 +52,7 @@ func main() {
 	cronjob := SetupCronJob(tasks.Config{})
 	cronjob.Start()
 	go func() {
-		cronUI := ui.NewCronUI(cronjob, entriesName)
+		cronUI := ui.NewCronUI(cronjob, entriesName, "127.0.0.1:5000")
 		cronUI.Start()
 	}()
 
