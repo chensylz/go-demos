@@ -1,12 +1,12 @@
 package ui
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/robfig/cron/v3"
 )
 
@@ -80,6 +80,7 @@ func (c *CronUI) startCronJob(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"message": "10秒后启动的任务无法手动启动",
 		})
+		return
 	}
 	go func(e *cron.Entry) {
 		e.Job.Run()

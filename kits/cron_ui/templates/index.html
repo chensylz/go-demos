@@ -134,16 +134,15 @@
                         this.pageInit()
                         return
                     }
+                }).catch(resp => {
                     this.$notify({
                         title: '警告',
-                        message: success.data.message,
+                        message: resp.response.data.message,
                         type: 'warning'
                     });
                 })
             },
             handleJobLog(job) {
-                console.log(job)
-                console.log(this.toShowHistory(job.manual_history))
                 this.jobObject.dialog.histories = job.manual_history ? this.toShowHistory(job.manual_history) : []
                 this.jobObject.dialog.isShow = true
             },
