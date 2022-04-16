@@ -8,6 +8,7 @@ require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/shopspring/decimal v1.3.1
 	github.com/tal-tech/go-zero v1.2.2
 	gorm.io/driver/mysql v1.2.3
 	gorm.io/gorm v1.22.4
@@ -29,7 +30,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
-	github.com/streadway/amqp v1.0.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	github.com/yuin/gopher-lua v0.0.0-20191220021717-ab39c6098bdb // indirect
 	go.opentelemetry.io/otel v1.0.1 // indirect

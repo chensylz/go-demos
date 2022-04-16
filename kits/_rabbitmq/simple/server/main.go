@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/streadway/amqp"
 	"log"
 	"time"
@@ -19,8 +20,10 @@ func main() {
 		false,   // no-wait
 		nil,     // arguments
 	)
+	count := 0
 	for {
-		body := "Hello World!"
+		count++
+		body := fmt.Sprintf("Hello World!, %d", count)
 		err := ch.Publish(
 			"",     // exchange
 			q.Name, // routing key
