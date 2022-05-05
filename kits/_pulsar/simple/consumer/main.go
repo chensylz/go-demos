@@ -18,7 +18,7 @@ func main() {
 	defer client.Close()
 
 	consumer, err := client.Subscribe(pulsar.ConsumerOptions{
-		Topic:            "my-topic",
+		Topic:            "persistent://chensy/namespace/simple01",
 		SubscriptionName: "my-sub",
 		Type:             pulsar.Shared,
 	})
