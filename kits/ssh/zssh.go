@@ -16,7 +16,7 @@ func main() {
 		fmt.Println("已连接...")
 		if err := cmd.Wait(); err != nil {
 			fmt.Println("Execute failed when Wait:" + err.Error())
-			return
+			continue
 		}
 		fmt.Println("断线了,重连中...")
 	}
