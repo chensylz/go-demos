@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -27,10 +28,9 @@ func main() {
 		log.Fatal(err)
 	}
 	defer producer.Close()
-
-	for {
+	for i := 0; i < 10000; i++ {
 		_, err = producer.Send(context.Background(), &pulsar.ProducerMessage{
-			Payload: []byte("hello"),
+			Payload: []byte(fmt.Sprintf("hello %d", i)),
 		})
 		if err != nil {
 			log.Fatal(err)
