@@ -1,4 +1,4 @@
-module github.com/1278651995/go-demos
+module github.com/wchensy/go-demos
 
 go 1.18
 
