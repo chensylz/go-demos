@@ -1,6 +1,6 @@
 module github.com/1278651995/go-demos
 
-go 1.17
+go 1.18
 
 require (
 	github.com/alicebob/miniredis/v2 v2.14.1
